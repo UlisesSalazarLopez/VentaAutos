@@ -1,0 +1,45 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de la Búsqueda</title>
+</head>
+<body>
+    <h1>Resultados de Búsqueda</h1>
+    <!-- Muestra el término que el usuario buscó -->
+    <p>Estás buscando: <strong>{{ query }}</strong></p>
+    <!-- Si se encontraron resultados en la búsqueda -->
+    {% if Autos %}
+        <p>Autos encontrados: {{ Autos|length }} artículos</p>
+        <!-- Tabla para mostrar los autos encontrados -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Precio</th>
+                    <th>Color</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Itera sobre la lista de autos encontrados -->
+                {% for auto in Autos %}
+                    <tr>
+                        <td>{{ auto.marca }}</td>
+                        <td>{{ auto.modelo }}</td>
+                        <td>{{ auto.año }}</td>
+                        <td>{{ auto.precio }}</td>
+                        <td>{{ auto.color }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    <!-- Si no se encontraron resultados -->
+        <p>No existen autos que coincidan con la búsqueda.</p>
+    {% endif %}
+    <a href="{% url 'busqueda_autos' %}">Volver a buscar</a> &nbsp;|&nbsp;
+    <a href="{% url 'contacto' %}">Contáctanos</a>
+</body>
+</html>

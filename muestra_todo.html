@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Autos</title>
+</head>
+<body>
+    <h1>Listado de Autos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Año</th>
+                <th>Precio</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Condición para verificar si hay autos en la base de datos -->
+            {% if Autos %}
+            <!-- Itera sobre la lista de autos proporcionada desde la vista -->
+                {% for auto in Autos %}
+                    <tr>
+                        <td>{{ auto.marca }}</td>
+                        <td>{{ auto.modelo }}</td>
+                        <td>{{ auto.año }}</td>
+                        <td>{{ auto.precio }}</td>
+                        <td>{{ auto.color }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+            <!-- Si no hay autos disponibles, muestra un mensaje en una fila -->
+                <tr>
+                    <td colspan="5">No hay autos disponibles.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <!-- Enlaces de navegación -->
+    <a href="{% url 'busqueda_autos' %}">Buscar Autos</a> &nbsp;|&nbsp;
+    <a href="{% url 'insertar_auto' %}">Insertar Auto</a>
+</body>
+</html>
